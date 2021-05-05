@@ -1,6 +1,1 @@
-[
-    {
-        "title":"Test Title",
-        "text":"Test text"
-    }
-]
+[{"id":1,"title":"Test Title","text":"Test text"},{"title":"And another one","text":"bites the dust","id":2},{"title":"Lion King","text":"Circle of Life","id":3}]
