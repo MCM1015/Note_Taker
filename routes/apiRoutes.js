@@ -8,33 +8,33 @@ module.exports = (app) => {
     app.post('/api/notes', (req, res) => {
         console.log(notes);
 
-        let newNote = {
-            title: req.body.title,
-            text: req.body.text,
-        }
-
-        newNote.id = notes[notes.length-1].id + 1;
+        let newNote = req.body
+        newNote.id = notes[notes.length - 1].id + 1;
         notes.push(newNote);
         res.json(true);
         console.log(notes);
-        
-        fs.writeFile('./db/db.json', JSON.stringify(notes), (err) =>
+
+        fs.writeFileSync('./db/db.json', JSON.stringify(notes), (err) =>
             err ? console.error(err) : console.log('Success!')
         );
 
     });
 
-    // app.delete(`/api/notes/${notes.length}`, (req, res) => {
+    // app.delete("/api/notes/:id", function (req, res) {
+    //     for (i = 0; i < notes.length-1; i++) {
+    //             notes.splice(i, 1);
+    //             console.log("Deleted note with id " + notes[i].id);
+    //             break;
+    //         }
     //     for(i=0; i<notes.length; i++) {
-    //     notes.splice(i, 1);
+    //         notes[i].id = i+1;
     //     }
+       
     //     console.log(notes);
-    //     for(i=0; i<notes.length; i++) {
-    //         notes[i].id = i;
-    //     }
-    //     fs.writeFile('./db/db.json', JSON.stringify(notes), (err) =>
-    //         err ? console.error(err) : console.log('Success!')
+    //     fs.writeFileSync('./db/db.json', JSON.stringify(notes), (err) =>
+    //         err ? console.error(err) : console.log('updated db.json file!')
     //     );
+        
     // });
 
 }
