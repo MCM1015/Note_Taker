@@ -24,9 +24,11 @@
       npm i
       
   ## Usage
-  Go to [Heroku]() or do a git pull and run on local machine.
+  Go to [Heroku](https://desolate-depths-47304.herokuapp.com/notes) or do a git pull and run on local machine.
 
   Preview: 
+  ![Page1](public/assets/images/Note_taker_1.png)
+  ![Page2](public/assets/images/Note_taker_2.png)
   
   ## License 
   This project is licensed under the [MIT](https://opensource.org/licenses/MIT) license.
