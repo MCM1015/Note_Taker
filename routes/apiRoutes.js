@@ -1,4 +1,4 @@
-const notes = require('../db/db.json');
+let notes = require('../db/db.json');
 const fs = require('fs');
 
 module.exports = (app) => {
@@ -14,27 +14,24 @@ module.exports = (app) => {
         res.json(true);
         console.log(notes);
 
-        fs.writeFileSync('./db/db.json', JSON.stringify(notes), (err) =>
+        fs.writeFile('./db/db.json', JSON.stringify(notes), (err) =>
             err ? console.error(err) : console.log('Success!')
         );
 
     });
 
-    // app.delete("/api/notes/:id", function (req, res) {
-    //     for (i = 0; i < notes.length-1; i++) {
-    //             notes.splice(i, 1);
-    //             console.log("Deleted note with id " + notes[i].id);
-    //             break;
-    //         }
-    //     for(i=0; i<notes.length; i++) {
-    //         notes[i].id = i+1;
-    //     }
-       
-    //     console.log(notes);
-    //     fs.writeFileSync('./db/db.json', JSON.stringify(notes), (err) =>
-    //         err ? console.error(err) : console.log('updated db.json file!')
-    //     );
-        
-    // });
+    app.delete("/api/notes/:id", function (req, res) {
+        notes = notes.filter(note => req.params.id != note.id); 
+        console.log('note deleted');
+        for(i=0; i<notes.length; i++) {
+            notes[i].id = i+1;
+        }  
+        console.log(notes);
+        res.json(notes);
+        fs.writeFile('./db/db.json', JSON.stringify(notes), (err) =>
+        err ? console.error(err) : console.log('updated db.json file!')
+        );
+    });
+
 
 }
